@@ -2600,6 +2600,8 @@
   .hw-c { flex: 1; display: flex; flex-direction: column; min-width: 0; }
   .hw-c > * { flex: 1; min-width: 0; }
   .hw-tw .sh-tw { width: 100%; max-width: 190px; margin-left: auto; }
+  .hw-tw .gk-tw { width: 100%; max-width: 150px; margin-left: auto; flex: 1; }
+  .hw-c > .gk-cls3 { align-content: stretch; }
   .sh-home.editing > .hw { outline: 2px dashed var(--line-strong); outline-offset: 4px; border-radius: var(--r-xl); cursor: grab; touch-action: none; }
   .sh-home.editing > .hw:hover { outline-color: var(--ink); }
   .sh-home.editing .hw-c { pointer-events: none; user-select: none; -webkit-user-select: none; }
@@ -2632,7 +2634,11 @@
   @container dev (max-width: 1080px) {
     .sh-home { grid-auto-flow: row dense; }
     .sh-home > .hw { grid-column: span var(--ts, 3); }
-    .hw-tw .sh-tw { max-width: none; }
+    .hw-tw .sh-tw, .hw-tw .gk-tw { max-width: none; }
+    .hw-tw .gk-tw { grid-template-rows: auto; gap: 6px; }
+    .hw-tw .gk-tw .chip { order: 2; font-size: 12px; } .hw-tw .gk-tw .chip b { display: inline; font-size: 12.5px; margin-right: .3em; }
+    .hw-tw .gk-tw .tower { padding: 10px 18px; border-radius: 999px; display: flex; align-items: center; gap: 14px; text-align: left; height: auto; }
+    .hw-tw .gk-tw .tower .big { font-size: 28px; } .hw-tw .gk-tw .gk-ti { display: none; }
     .hw-w, .hw-rz, .hw-dk { display: none; }
     .hl-map { display: none; }
   }
@@ -4207,7 +4213,7 @@ textarea.dk-ta { min-height: 46px; height: 46px; max-height: 150px; resize: none
     .gk-sc { gap: 4px; }
     .gk-tw { grid-template-rows: auto; gap: 6px; order: -1; }
     .gk-tw .chip { order: 2; font-size: 12px; }
-    .gk-tw .chip b { display: inline; font-size: 12.5px; }
+    .gk-tw .chip b { display: inline; font-size: 12.5px; margin-right: .3em; }
     .gk-tw .tower { padding: 10px 18px; border-radius: 999px; display: flex; align-items: center; gap: 14px; text-align: left; height: auto; }
     .gk-tw .tower .big { font-size: 28px; }
     .gk-ti { display: none; }
@@ -13589,6 +13595,7 @@ var EN_DICT = {
   EN_DICT["Perlebar"] = "Wider";
   EN_DICT["Tata letak Beranda disimpan."] = "Home layout saved.";
   EN_DICT["Tata letak Beranda kembali ke awal."] = "Home layout restored to default.";
+  EN_DICT["Susun Beranda sesuai cara Anda bekerja: geser kartu, ubah lebarnya, atau sembunyikan yang tidak Anda perlukan."] = "Arrange Home to fit how you work: drag cards, change their width, or hide what you don't need.";
   EN_DICT["Mode edit Beranda aktif."] = "Home edit mode is on.";
   EN_DICT["Semua kartu disembunyikan. Tampilkan lagi lewat tombol di atas."] = "All cards are hidden. Show them again with the buttons above.";
   var I18N = (function () {
@@ -15223,56 +15230,68 @@ var EN_DICT = {
       '<ul class="sh-bs" aria-label="Semua lencana">' + B.map(function (b) { return '<li class="' + (b.got ? 'got' : '') + '" title="' + esc(b.t + (b.got ? ' · sudah didapat' : ' · belum')) + '">' + ic(b.ic, 15) + '<span class="sr">' + esc(b.t) + (b.got ? ' sudah didapat' : ' belum didapat') + '</span></li>'; }).join('') + '</ul></section>';
   };
 
-  /* ---------- Beranda yang bisa disusun siswa (mode edit dari Pengaturan > Tampilan) ----------
-     Tiap kartu = satu widget di grid 12 kolom: urutan, lebar (3–12 kolom), dan tampil/sembunyi disimpan per perangkat.
-     Pil Progres lebarnya tetap (2 kolom) supaya tidak membesar. */
-  var HL_KEY = 'cflms-home-layout';
-  var HL_NAME = { cont: 'Lanjutkan belajar', sched: 'Jadwal hari ini', tw: 'Progres', todo: 'Perlu dikerjakan', news: 'Kabar terbaru', disk: 'Diskusi', cls: 'Info kelas', badge: 'Lencana' };
-  var HL = (function () { var v = null; try { v = JSON.parse(localStorage.getItem(HL_KEY) || 'null'); } catch (e) {} v = v || {}; return { order: v.order || null, w: v.w || {}, hide: v.hide || {} }; })();
-  var hl_save = function () { try { localStorage.setItem(HL_KEY, JSON.stringify({ order: HL.order, w: HL.w, hide: HL.hide })); } catch (e) {} };
-  var hl_reset = function () { HL.order = null; HL.w = {}; HL.hide = {}; hl_save(); };
-  var hl_def = function (xp) { return [['cont', 4], ['sched', 6], ['tw', 2], ['todo', 7], ['news', 5], ['disk', xp ? 4 : 6], ['cls', xp ? 4 : 6]].concat(xp ? [['badge', 4]] : []); };
-  var hl_list = function (xp) {
-    var D = hl_def(xp), ids = D.map(function (x) { return x[0]; });
-    var ord = (HL.order || []).filter(function (id) { return ids.indexOf(id) > -1; });
-    ids.forEach(function (id) { if (ord.indexOf(id) < 0) ord.push(id); });
-    return ord.map(function (id) { var d = D[ids.indexOf(id)][1]; return { id: id, s: id === 'tw' ? 2 : Math.max(3, Math.min(12, HL.w[id] || d)), hide: !!HL.hide[id] }; });
+  /* ---------- Beranda yang bisa disusun (siswa dan guru; mode edit dari Pengaturan > Tampilan) ----------
+     Tiap kartu = satu widget di grid 12 kolom: urutan, lebar (3–12 kolom), dan tampil/sembunyi disimpan per perangkat, terpisah per peran.
+     Pil angka (Progres siswa, Rata-rata nilai guru) lebarnya tetap supaya tidak membesar. */
+  var HL_CFG = {
+    siswa: { key: 'cflms-home-layout', fixed: 'tw',
+      name: { cont: 'Lanjutkan belajar', sched: 'Jadwal hari ini', tw: 'Progres', todo: 'Perlu dikerjakan', news: 'Kabar terbaru', disk: 'Diskusi', cls: 'Info kelas', badge: 'Lencana' },
+      def: function () { var xp = sh_xpOn(); return [['cont', 4], ['sched', 6], ['tw', 2], ['todo', 7], ['news', 5], ['disk', xp ? 4 : 6], ['cls', xp ? 4 : 6]].concat(xp ? [['badge', 4]] : []); } },
+    guru: { key: 'cflms-home-layout-guru', fixed: 'gtw', tabWide: true,
+      name: { gcls: 'Kelas saya', gtw: 'Rata-rata nilai', gtoday: 'Jadwal hari ini', gdue: 'Tenggat 7 hari ke depan', gpen: 'Perlu dinilai', glag: 'Siswa tertinggal', gstuck: 'Langkah yang sering macet', gask: 'Pertanyaan menunggu' },
+      def: function () { return [['gcls', 10], ['gtw', 2], ['gtoday', 5], ['gdue', 7], ['gpen', 3], ['glag', 3], ['gstuck', 3], ['gask', 3]]; } }
   };
-  /* tablet (6 kolom): pil Progres 2 kolom berpasangan dengan kartu di sebelahnya (4 kolom); kartu lain setengah atau penuh */
-  var hl_tab = function (w, pair) { return w.id === 'tw' ? 2 : w.id === pair ? 4 : (w.s >= 6 ? 6 : 3); };
-  var hl_home = function (xp, F) {
-    var L = hl_list(xp), ed = !!A.hedit, vis = L.filter(function (w) { return !w.hide; }), hid = L.filter(function (w) { return w.hide; });
-    var twi = vis.map(function (w) { return w.id; }).indexOf('tw'), pr = null;
-    if (twi > -1) { var near = vis.filter(function (w) { return w.id !== 'tw' && w.s <= 5; }).sort(function (a, b) { return Math.abs(vis.indexOf(a) - twi) - Math.abs(vis.indexOf(b) - twi); })[0]; pr = near ? near.id : null; }
+  var hl_role = function () { return HL_CFG[A.role] ? A.role : 'siswa'; };
+  var hl_cfg = function () { return HL_CFG[hl_role()]; };
+  var HLS = {};
+  var hl_st = function () {
+    var r = hl_role(); if (HLS[r]) return HLS[r];
+    var v = null; try { v = JSON.parse(localStorage.getItem(HL_CFG[r].key) || 'null'); } catch (e) {} v = v || {};
+    return (HLS[r] = { order: v.order || null, w: v.w || {}, hide: v.hide || {} });
+  };
+  var hl_save = function () { var H = hl_st(); try { localStorage.setItem(hl_cfg().key, JSON.stringify({ order: H.order, w: H.w, hide: H.hide })); } catch (e) {} };
+  var hl_reset = function () { var H = hl_st(); H.order = null; H.w = {}; H.hide = {}; hl_save(); };
+  var hl_nm = function (id) { return hl_cfg().name[id] || id; };
+  var hl_list = function () {
+    var C = hl_cfg(), H = hl_st(), D = C.def(), ids = D.map(function (x) { return x[0]; });
+    var ord = (H.order || []).filter(function (id) { return ids.indexOf(id) > -1; });
+    ids.forEach(function (id) { if (ord.indexOf(id) < 0) ord.push(id); });
+    return ord.map(function (id) { var d = D[ids.indexOf(id)][1]; return { id: id, fx: id === C.fixed, s: id === C.fixed ? 2 : Math.max(3, Math.min(12, H.w[id] || d)), hide: !!H.hide[id] }; });
+  };
+  var hl_tab = function (w, pair) { return w.fx ? (hl_cfg().tabWide ? 6 : 2) : w.id === pair ? 4 : (w.s >= 6 ? 6 : 3); };
+  var hl_home = function (F) {
+    var L = hl_list(), ed = !!A.hedit, vis = L.filter(function (w) { return !w.hide; }), hid = L.filter(function (w) { return w.hide; });
+    var twi = vis.map(function (w) { return w.fx; }).indexOf(true), pr = null;
+    if (twi > -1 && !hl_cfg().tabWide) { var near = vis.filter(function (w) { return !w.fx && w.s <= 5; }).sort(function (a, b) { return Math.abs(vis.indexOf(a) - twi) - Math.abs(vis.indexOf(b) - twi); })[0]; pr = near ? near.id : null; }
     var bar = function (w, i) {
-      var nm = HL_NAME[w.id];
+      var nm = hl_nm(w.id);
       return '<div class="hw-bar"><button type="button" class="hw-drag" data-act="hw-noop" aria-label="Seret untuk memindah ' + nm + '" title="Seret untuk memindah">' + ic('drag', 16) + '</button><b>' + nm + '</b>' +
         '<button type="button" data-act="hw-mv" data-id="' + w.id + '" data-d="-1" aria-label="Pindah ke depan"' + (i === 0 ? ' aria-disabled="true"' : '') + '>' + ic('back', 16) + '</button>' +
         '<button type="button" data-act="hw-mv" data-id="' + w.id + '" data-d="1" aria-label="Pindah ke belakang"' + (i === vis.length - 1 ? ' aria-disabled="true"' : '') + '>' + ic('fwd', 16) + '</button>' +
-        (w.id === 'tw' ? '' : '<span class="hw-w"><button type="button" data-act="hw-w" data-id="' + w.id + '" data-d="-1" aria-label="Perkecil"' + (w.s <= 3 ? ' aria-disabled="true"' : '') + '>&minus;</button><span class="hw-s" aria-label="Lebar">' + w.s + '/12</span><button type="button" data-act="hw-w" data-id="' + w.id + '" data-d="1" aria-label="Perlebar"' + (w.s >= 12 ? ' aria-disabled="true"' : '') + '>+</button></span>') +
+        (w.fx ? '' : '<span class="hw-w"><button type="button" data-act="hw-w" data-id="' + w.id + '" data-d="-1" aria-label="Perkecil"' + (w.s <= 3 ? ' aria-disabled="true"' : '') + '>&minus;</button><span class="hw-s" aria-label="Lebar">' + w.s + '/12</span><button type="button" data-act="hw-w" data-id="' + w.id + '" data-d="1" aria-label="Perlebar"' + (w.s >= 12 ? ' aria-disabled="true"' : '') + '>+</button></span>') +
         '<button type="button" data-act="hw-hide" data-id="' + w.id + '" aria-label="Sembunyikan ' + nm + '" title="Sembunyikan">' + ic('eye', 16) + '</button></div>';
     };
     var top = ed ? '<div class="hw-ed" role="region" aria-label="Mode edit Beranda"><span class="av">' + ic('grid', 18) + '</span><div class="tx"><b>Mode edit Beranda</b><span>Seret kartu atau pakai tombol panah untuk memindah. <i class="hw-dk">Tarik pegangan di tepi kanan untuk mengubah lebar.</i> Perubahan langsung tersimpan.</span></div>' +
-      (hid.length ? '<div class="hw-hid"><small>Tersembunyi:</small>' + hid.map(function (w) { return '<button type="button" class="btn sm" data-act="hw-show" data-id="' + w.id + '">' + ic('plus', 15) + HL_NAME[w.id] + '</button>'; }).join('') + '</div>' : '') +
+      (hid.length ? '<div class="hw-hid"><small>Tersembunyi:</small>' + hid.map(function (w) { return '<button type="button" class="btn sm" data-act="hw-show" data-id="' + w.id + '">' + ic('plus', 15) + hl_nm(w.id) + '</button>'; }).join('') + '</div>' : '') +
       '<div class="hw-eb">' + btn('Atur ulang', { sm: true, act: 'hw-reset' }) + btn('Selesai', { sm: true, kind: 'primary', act: 'hw-done', icon: 'check' }) + '</div></div>' : '';
     return top + '<div class="sh-home' + (ed ? ' editing' : '') + '">' + vis.map(function (w, i) {
-      return '<div class="hw' + (w.id === 'tw' ? ' hw-tw' : '') + '" data-hw="' + w.id + '" style="--s:' + w.s + ';--ts:' + hl_tab(w, pr) + '">' + (ed ? bar(w, i) : '') + '<div class="hw-c">' + F[w.id]() + '</div>' + (ed && w.id !== 'tw' ? '<span class="hw-rz" aria-hidden="true"></span>' : '') + '</div>';
+      return '<div class="hw' + (w.fx ? ' hw-tw' : '') + '" data-hw="' + w.id + '" style="--s:' + w.s + ';--ts:' + hl_tab(w, pr) + '">' + (ed ? bar(w, i) : '') + '<div class="hw-c">' + F[w.id]() + '</div>' + (ed && !w.fx ? '<span class="hw-rz" aria-hidden="true"></span>' : '') + '</div>';
     }).join('') + (vis.length ? '' : '<p class="muted">Semua kartu disembunyikan. Tampilkan lagi lewat tombol di atas.</p>') + '</div>';
   };
-  var hl_order = function (grid) { var o = [].map.call(grid.querySelectorAll(':scope > .hw'), function (e) { return e.getAttribute('data-hw'); }); hl_list(sh_xpOn()).forEach(function (w) { if (o.indexOf(w.id) < 0) o.push(w.id); }); HL.order = o; hl_save(); };
+  var hl_order = function (grid) { var o = [].map.call(grid.querySelectorAll(':scope > .hw'), function (e) { return e.getAttribute('data-hw'); }); hl_list().forEach(function (w) { if (o.indexOf(w.id) < 0) o.push(w.id); }); hl_st().order = o; hl_save(); };
   var hl_act = function (a, t) {
     if (a.indexOf('hw-') !== 0) return false;
     var id = t.getAttribute('data-id'), d = +t.getAttribute('data-d') || 0;
     if (a === 'hw-noop') return true;
     if (a === 'hw-done') { A.hedit = false; refresh(); toast('Tata letak Beranda disimpan.'); return true; }
     if (a === 'hw-reset') { hl_reset(); refresh(); toast('Tata letak Beranda kembali ke awal.'); return true; }
-    if (a === 'hw-hide') { HL.hide[id] = true; hl_save(); refresh(); toast(HL_NAME[id] + ' disembunyikan.'); return true; }
-    if (a === 'hw-show') { delete HL.hide[id]; hl_save(); refresh(); toast(HL_NAME[id] + ' ditampilkan.'); return true; }
-    var L = hl_list(sh_xpOn()), w = L.filter(function (x) { return x.id === id; })[0]; if (!w) return true;
-    if (a === 'hw-w') { HL.w[id] = Math.max(3, Math.min(12, w.s + d)); hl_save(); refresh(); return true; }
+    if (a === 'hw-hide') { hl_st().hide[id] = true; hl_save(); refresh(); toast(hl_nm(id) + ' disembunyikan.'); return true; }
+    if (a === 'hw-show') { delete hl_st().hide[id]; hl_save(); refresh(); toast(hl_nm(id) + ' ditampilkan.'); return true; }
+    var L = hl_list(), w = L.filter(function (x) { return x.id === id; })[0]; if (!w) return true;
+    if (a === 'hw-w') { hl_st().w[id] = Math.max(3, Math.min(12, w.s + d)); hl_save(); refresh(); return true; }
     if (a === 'hw-mv') {
       var vis = L.filter(function (x) { return !x.hide; }), i = vis.indexOf(w), j = i + d; if (j < 0 || j >= vis.length) return true;
-      var o = L.map(function (x) { return x.id; }), a1 = o.indexOf(id), b1 = o.indexOf(vis[j].id); o[a1] = vis[j].id; o[b1] = id; HL.order = o; hl_save(); refresh();
+      var o = L.map(function (x) { return x.id; }), a1 = o.indexOf(id), b1 = o.indexOf(vis[j].id); o[a1] = vis[j].id; o[b1] = id; hl_st().order = o; hl_save(); refresh();
       var nb = root.querySelector('.hw[data-hw="' + id + '"] [data-act="hw-mv"][data-d="' + d + '"]'); if (nb) nb.focus({ preventScroll: true });
       return true;
     }
@@ -15293,7 +15312,7 @@ var EN_DICT = {
     addEventListener('pointermove', mv); addEventListener('pointerup', end); addEventListener('pointercancel', end);
   };
   var hl_drag = function (e, hw, grid) {
-    var sx = e.clientX, sy = e.clientY, moved = false, ghost = null, nm = HL_NAME[hw.getAttribute('data-hw')];
+    var sx = e.clientX, sy = e.clientY, moved = false, ghost = null, nm = hl_nm(hw.getAttribute('data-hw'));
     hl_track(e, function (ev) {
       if (!moved && Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) return;
       if (!moved) { moved = true; hw.classList.add('dragging'); grid.classList.add('dragnow'); ghost = document.createElement('div'); ghost.className = 'hw-ghost'; ghost.innerHTML = ic('drag', 15) + '<span>' + nm + '</span>'; root.appendChild(ghost); }
@@ -15315,12 +15334,12 @@ var EN_DICT = {
     hl_track(e, function (ev) {
       var n = Math.max(3, Math.min(cols, Math.round((ev.clientX - left + gap) / (track + gap))));
       if (n !== cur) { cur = n; hw.style.setProperty('--s', n); if (lab) lab.textContent = n + '/12'; }
-    }, function () { hw.classList.remove('sizing'); HL.w[id] = cur; hl_save(); refresh(); });
+    }, function () { hw.classList.remove('sizing'); hl_st().w[id] = cur; hl_save(); refresh(); });
   };
   /* peta mini tata letak untuk Pengaturan > Tampilan */
   var hl_mapHtml = function () {
-    var L = hl_list(sh_xpOn());
-    return '<div class="hl-map" aria-hidden="true">' + L.filter(function (w) { return !w.hide; }).map(function (w) { return '<span class="' + (w.id === 'tw' ? 'tw' : '') + '" style="--s:' + w.s + '">' + HL_NAME[w.id] + '</span>'; }).join('') + '</div>';
+    var L = hl_list();
+    return '<div class="hl-map" aria-hidden="true">' + L.filter(function (w) { return !w.hide; }).map(function (w) { return '<span class="' + (w.fx ? 'tw' : '') + '" style="--s:' + w.s + '">' + hl_nm(w.id) + '</span>'; }).join('') + '</div>';
   };
   reg('siswa', 'home', {
     title: 'Beranda', sub: function () { return fmtD(TODAY, true); }, nav: 'home',
@@ -15329,7 +15348,7 @@ var EN_DICT = {
       var nx = sh_waiting(A.cls) ? null : nextItem(), xp = sh_xpOn(), c3 = xp ? 'sh-c4' : 'sh-c6';
       var main = nx ? btn('Lanjutkan', { kind: 'primary', go: 'item?id=' + nx.id, after: 'arrow' }) : btn('Lihat nilai', { kind: 'primary', go: 'nilai' });
       return ph(sh_greet() + ', ' + esc(sh_first()), 'Satu langkah kecil setiap hari.', datechip() + main) +
-        hl_home(xp, {
+        hl_home({
           cont: sh_cardCont, sched: sh_cardSched, tw: function () { return sh_tower({ chips: true, cls: 'sh-a-tw' }); }, todo: sh_cardTodo, news: sh_cardNews,
           disk: function () { return sh_cardDisk(c3); }, cls: function () { return sh_cardCls(c3); }, badge: function () { return sh_cardBadge(c3); }
         });
@@ -16565,7 +16584,7 @@ var EN_DICT = {
     var gerak = cardSec('Gerak dan fokus', sa_switch('Kurangi gerakan', 'Mematikan animasi dan transisi.', SET.calm, 'calm') +
       sa_switch('Mode Fokus saat belajar', 'Menyembunyikan menu samping, kotak cari, dan tutor di halaman belajar. Hanya satu hal di layar.', SET.focus, 'focus') +
       sa_switch('Baca-suara otomatis', 'Teks pelajaran dibacakan saat halaman dibuka. Pada prototipe ini suara belum diputar.', SET.tts, 'tts'));
-    var beranda = A.role === 'siswa' ? cardSec('Tata letak Beranda', '<p class="note">Beranda milikmu. Susun seperti kanvas: geser kartu, ubah lebarnya, atau sembunyikan yang tidak kamu perlukan.</p>' + hl_mapHtml() +
+    var beranda = HL_CFG[A.role] ? cardSec('Tata letak Beranda', '<p class="note">' + (A.role === 'guru' ? 'Susun Beranda sesuai cara Anda bekerja: geser kartu, ubah lebarnya, atau sembunyikan yang tidak Anda perlukan.' : 'Beranda milikmu. Susun seperti kanvas: geser kartu, ubah lebarnya, atau sembunyikan yang tidak kamu perlukan.') + '</p>' + hl_mapHtml() +
       '<div class="hl-act">' + btn('Mode edit Beranda', { sm: true, kind: 'primary', act: 'hl-open', icon: 'grid' }) + btn('Kembalikan tata letak awal', { sm: true, act: 'hl-reset' }) + '</div>') : '';
     return '<div class="sa-wrap">' + sa_prevHtml() + '<div class="sa-groups">' + beranda + teks + warna + gerak + '</div></div>';
   };
@@ -18894,9 +18913,11 @@ var EN_DICT = {
     var w3 = gk_widget('flag', 'Langkah yang sering macet', null, '', allStuck.length ? '<ul class="list gk-wl">' + allStuck.slice(0, 3).map(function (x) { return '<li><div class="tx"><b>' + esc(x.s[1]) + '</b><span>' + esc(x.s[2] + ' · Unit ' + x.s[0] + ' · ' + gk_short(x.c)) + '</span></div><span class="tag ' + (x.s[3] >= 25 ? 'warn' : '') + '">' + x.s[3] + '% berhenti</span></li>'; }).join('') + '</ul>' : empty('Belum ada langkah yang macet', 'Muncul setelah siswa mulai belajar.'), allStuck.length ? btn('Lihat langkah macet', { act: 'gk-go', after: 'arrow', sm: true, attrs: ' data-code="' + allStuck[0].c.code + '" data-to="nilai" data-p="v=kemajuan"' }) : '');
     var w4 = gk_widget('chat', 'Pertanyaan menunggu', askN, 'pertanyaan belum dijawab', (wait.length ? '<ul class="list gk-wl">' + wait.slice(0, 3).map(function (t) { return '<li>' + avatar(t.msgs[0][0], 'sm') + '<div class="tx"><b>' + esc(t.t) + '</b><span>' + esc(t.msgs[0][0] + ' · ' + t.ctx) + '</span></div></li>'; }).join('') + '</ul>' : empty('Tidak ada pertanyaan menunggu', 'Pertanyaan siswa muncul di sini.')) + gk_ann(), btn('Buka Diskusi', { go: 'diskusi?tab=tanya', after: 'arrow', sm: true }));
     return ph(gk_greet(), 'Ini yang perlu perhatian hari ini.', datechip() + btn('Buat kelas', { kind: 'primary', icon: 'plus', go: 'kelas?new=1' })) +
-      '<div class="gk-r1"><section class="gk-cls3" aria-label="Kelas saya">' + L.map(gk_hc).join('') + '</section>' + tower + '</div>' +
-      '<div class="gk-r2">' + gk_todayCard() + gk_dueCard() + '</div>' +
-      '<div class="gk-r3">' + w1 + w2 + w3 + w4 + '</div>';
+      hl_home({
+        gcls: function () { return '<section class="gk-cls3" aria-label="Kelas saya">' + L.map(gk_hc).join('') + '</section>'; }, gtw: function () { return tower; },
+        gtoday: function () { return gk_todayCard(); }, gdue: function () { return gk_dueCard(); },
+        gpen: function () { return w1; }, glag: function () { return w2; }, gstuck: function () { return w3; }, gask: function () { return w4; }
+      });
   };
 
   /* =========================================================
@@ -19450,6 +19471,9 @@ var EN_DICT = {
   gk_reg('home', {
     title: 'Beranda', sub: function () { return fmtD(TODAY, true); },
     render: gk_homeRender,
+    mount: function (main) { hl_mount(main); },
+    leave: function () { A.hedit = false; gk_dropToast(); },
+    act: function (a, t, e) { if (hl_act(a, t)) return true; return gk_act(a, t, e); },
     atm: ['Referensi desain (dasbor monokrom: kartu kelas, linimasa "Class Schedule", pil "Average Grades", tabel "Upcoming Assignment"). Brightspace (widget perlu perhatian di beranda), Canvas (To Do guru), Moodle 4 (blok Timeline).',
       'Sapaan besar, chip tanggal, tombol pil hitam, kartu kelas berthumbnail, pil gelap tinggi untuk satu angka.',
       'Jadwal hari ini berupa daftar kompak (bukan linimasa tinggi yang kosong). Kartu kelas punya jalan pintas Materi, Nilai, Diskusi. Empat widget (Perlu dinilai, Tertinggal, Langkah macet, Pertanyaan menunggu) masing-masing satu angka dan satu tombol (F15, F30). Satu aksi utama: Buat kelas.']
