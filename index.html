@@ -1353,6 +1353,7 @@
     <div class="ctl">
       <button type="button" class="pv-btn" data-pv="restart">Mulai ulang</button>
       <div class="pv-seg pv-jump" role="group" aria-label="Lompat ke"><span>Lompat ke:</span><button type="button" class="pv-btn" data-pv="skip">landing</button><button type="button" class="pv-btn" data-pv="login">login</button><button type="button" class="pv-btn" data-pv="app">LMS</button><button type="button" class="pv-btn" data-pv="map">peta alur</button></div>
+      <div class="pv-seg" role="group" aria-label="Bahasa"><span>Bahasa:</span><button type="button" data-pvlang="id" aria-pressed="true">ID</button><button type="button" data-pvlang="en" aria-pressed="false">EN</button></div>
       <div class="pv-seg" role="group" aria-label="Contoh font"><span>Font:</span><button type="button" data-font="a" aria-pressed="true">A</button><button type="button" data-font="b" aria-pressed="false">B</button><button type="button" data-font="c" aria-pressed="false">C</button></div>
       <div class="pv-seg" role="group" aria-label="Gerakan"><span>Gerakan:</span><button type="button" data-motion="full" aria-pressed="true">Penuh</button><button type="button" data-motion="calm" aria-pressed="false">Tenang</button></div>
       <button type="button" class="link" id="open-drawer">Catatan dan ACC</button>
@@ -2108,6 +2109,7 @@
   .pm { top: 72px; right: 16px; width: min(300px, calc(100vw - 24px)); padding: 8px; display: grid; gap: 2px; }
   .pm-h { display: flex; align-items: center; gap: 12px; padding: 10px 12px 12px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
   .pm-h span { display: grid; min-width: 0; line-height: 1.25; } .pm-h b { font-size: 14.5px; } .pm-h small { color: var(--muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; }
+  .pm .pm-lg { flex: 1; display: flex; justify-content: space-between; gap: 8px; } .pm .pm-lg small { color: var(--muted); font-size: 13px; font-weight: 400; }
   .pm button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 8px 12px; border: 0; border-radius: var(--r-sm); background: none; text-align: left; font-weight: 500; font-size: 14.5px; }
   .pm button:hover { background: var(--pill); }
   .pm button svg { color: var(--muted); flex: none; }
@@ -5637,7 +5639,7 @@ button.gn-tl[aria-pressed="true"] { border-color: var(--ink); background: var(--
     try { var sv = JSON.parse(localStorage.getItem(KEY) || 'null'); if (sv) { if (sv.lang === 'en') st.lang = 'en'; st.langSet = !!sv.langSet; if (/^(terang|gelap)$/.test(sv.theme)) st.theme = sv.theme; if (/^[abc]$/.test(sv.font)) st.font = sv.font; if (sv.motion === 'calm') st.motion = 'calm'; st.dec = sv.dec || {}; } } catch (e) {}
     var api = { st: st, view: 'ob', roots: [document] };
     var $ = function (id) { return document.getElementById(id); };
-    api.save = function () { try { localStorage.setItem(KEY, JSON.stringify({ lang: st.lang, langSet: st.langSet, theme: st.theme, font: st.font, motion: st.motion, dec: st.dec })); } catch (e) {} };
+    api.save = function () { try { localStorage.setItem(KEY, JSON.stringify({ lang: st.lang, langSet: st.langSet, theme: st.theme, font: st.font, motion: st.motion, dec: st.dec })); } catch (e) {} if (api.syncBar) api.syncBar(); };
     api.toast = function (msg) { var el = $('toast'); el.textContent = msg; el.hidden = false; clearTimeout(api.toast.t); api.toast.t = setTimeout(function () { el.hidden = true; }, 2600); };
     var reduce = function () { return st.motion === 'calm' || matchMedia('(prefers-reduced-motion: reduce)').matches; };
     api.effectiveTheme = function () { return st.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'gelap' : 'terang'); };
@@ -5723,6 +5725,7 @@ button.gn-tl[aria-pressed="true"] { border-color: var(--ink); background: var(--
     api.setPvh = function () { document.documentElement.style.setProperty('--pvh', $('pv').offsetHeight + 'px'); };
     api.syncBar = function () {
       document.querySelectorAll('.pv-seg [data-font]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-font') === st.font)); });
+      document.querySelectorAll('.pv-seg [data-pvlang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pvlang') === st.lang)); });
       document.querySelectorAll('.pv-seg [data-motion]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-motion') === st.motion)); });
       document.documentElement.setAttribute('data-font', st.font); document.documentElement.setAttribute('data-motion', st.motion); document.documentElement.setAttribute('data-size', st.size);
     };
@@ -13799,7 +13802,7 @@ var EN_DICT = {
   var pmMenu = function () {
     var w = A.who;
     return '<div class="pm-w"><div class="scrim clear" data-act="menu"></div><div class="pm" role="menu" aria-label="Akun"><div class="pm-h">' + avatar(w.name) + '<span><b>' + esc(w.name) + '</b><small>' + esc(w.email || w.short) + '</small></span></div>' +
-      '<button type="button" role="menuitem" data-go="profil">' + ic('user', 16) + 'Profil</button><button type="button" role="menuitem" data-go="pengaturan">' + ic('sliders', 16) + 'Pengaturan</button><button type="button" role="menuitem" data-go="bantuan">' + ic('help', 16) + 'Bantuan</button><hr><button type="button" role="menuitem" class="out" data-act="logout">' + ic('back', 16) + 'Keluar</button></div></div>';
+      '<button type="button" role="menuitem" data-go="profil">' + ic('user', 16) + 'Profil</button><button type="button" role="menuitem" data-go="pengaturan">' + ic('sliders', 16) + 'Pengaturan</button><button type="button" role="menuitem" data-go="pengaturan?s=tampilan">' + ic('type', 16) + '<span class="pm-lg">Bahasa<small>' + (SH.st.lang === 'en' ? 'English' : 'Indonesia') + '</small></span></button><button type="button" role="menuitem" data-go="bantuan">' + ic('help', 16) + 'Bantuan</button><hr><button type="button" role="menuitem" class="out" data-act="logout">' + ic('back', 16) + 'Keluar</button></div></div>';
   };
   var cdlgHtml = function () {
     if (A.cd !== 'logout') return '';
@@ -13849,7 +13852,7 @@ var EN_DICT = {
         '<form class="search" role="search" data-form="cari"><label class="sr" for="ap-q">Cari materi, tugas, atau siswa</label>' + ic('search', 18) + '<input id="ap-q" name="q" placeholder="' + (A.role === 'guru' ? 'Cari pelajaran, tugas, atau siswa' : 'Cari materi atau tugas') + '" autocomplete="off"></form><span class="sp"></span>' +
         (isTamu ? '' : '<button type="button" class="ib" data-go="notif" aria-label="Notifikasi' + (unread ? ': ' + unread + ' baru' : '') + '">' + ic('bell', 19) + (unread ? '<i class="dot"></i>' : '') + '</button>') +
         '<div class="thm" role="group" aria-label="Tema"><button type="button" data-act="theme" data-v="terang" aria-pressed="' + (theme === 'terang') + '" aria-label="Terang">' + ic('sun', 17) + '</button><button type="button" data-act="theme" data-v="gelap" aria-pressed="' + (theme === 'gelap') + '" aria-label="Gelap">' + ic('moon', 17) + '</button></div>' +
-        '<div class="thm lng" role="group" aria-label="Bahasa"><button type="button" data-act="lang" data-v="id" aria-pressed="' + (SH.st.lang !== 'en') + '" aria-label="Bahasa Indonesia">ID</button><button type="button" data-act="lang" data-v="en" aria-pressed="' + (SH.st.lang === 'en') + '" aria-label="English">EN</button></div>' +
+        
         (isTamu ? btn('Kembali', { sm: true, act: 'to-lp', icon: 'back' }) : '<button type="button" class="me" data-act="menu" aria-haspopup="menu" aria-expanded="' + !!A.menu + '" aria-label="Menu akun ' + esc(who.name) + '">' + avatar(who.name) + '<span class="nm">' + esc(who.name) + '<small>' + esc(who.short) + '</small></span>' + ic('down', 16) + '</button>') + '</header>' +
         (d.side ? '<div class="wside">' + '<div class="side-index">' + d.side(A.p) + '</div><main class="main' + (d.narrow ? ' narrow' : '') + '" id="ap-main" tabindex="-1">' + d.render(A.p) + atmHtml(d.atm) + '</main></div>'
           : '<main class="main' + (d.narrow ? ' narrow' : '') + '" id="ap-main" tabindex="-1">' + d.render(A.p) + atmHtml(d.atm) + '</main>') + bottom + '</div></div>';
@@ -23012,6 +23015,9 @@ var EN_DICT = {
   document.addEventListener('three-ready', function () { if (SH.view === 'lp') { var y = scrollY; LP.mount(); scrollTo(0, y); } });
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('.pv-seg button, [data-pv]'); if (!t) return;
+    if (t.hasAttribute('data-pvlang')) { /* ganti bahasa dari bilah pratinjau (khusus demo); di aplikasi bahasa diatur di Pengaturan > Tampilan */
+      SH.st.lang = t.getAttribute('data-pvlang') === 'en' ? 'en' : 'id'; SH.st.langSet = true; SH.save(); document.documentElement.lang = SH.st.lang; SH.syncBar(); if (SH.rebuildDecisions) SH.rebuildDecisions();
+      var yl = scrollY; if (SH.view === 'app') APP.render(); else if (SH.view === 'lp') LP.mount(); else SH.show(SH.view); scrollTo(0, yl); return; }
     if (t.hasAttribute('data-font')) { SH.st.font = t.getAttribute('data-font'); SH.save(); SH.syncBar(); return; }
     if (t.hasAttribute('data-motion')) { SH.st.motion = t.getAttribute('data-motion'); SH.save(); SH.syncBar(); if (SH.view === 'lp') { var y = scrollY; LP.mount(); scrollTo(0, y); } return; }
     if (t.getAttribute('data-pv') === 'restart') return SH.toOnboarding(0);
