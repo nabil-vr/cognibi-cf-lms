@@ -15,9 +15,9 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .page{width:210mm;height:297mm;margin:0 auto;position:relative;overflow:hidden;
   background:var(--cream);
   background-image:radial-gradient(#f3e3c6 1.2px,transparent 1.3px);background-size:11px 11px;
-  padding:0 8mm 0;display:flex;flex-direction:column;gap:11px}
+  padding:0 8mm 0;display:flex;flex-direction:column;gap:8px}
 /* header */
-.hero{margin:0 -8mm;background:linear-gradient(135deg,#9c1f19 0%,#d4452f 55%,#f08a24 100%);position:relative;padding:12px 8mm 20px;color:#fff;overflow:hidden;height:190px}
+.hero{margin:0 -8mm;background:linear-gradient(135deg,#9c1f19 0%,#d4452f 55%,#f08a24 100%);position:relative;padding:12px 8mm 20px;color:#fff;overflow:hidden;height:178px;flex:none}
 .hero:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:16px;background:var(--cream);clip-path:ellipse(60% 100% at 50% 100%)}
 .hero .tag{display:inline-block;background:#fff;color:var(--red-d);font-weight:800;font-size:10.8px;letter-spacing:1px;padding:3px 10px;border-radius:20px}
 .hero h1{font-size:60px;line-height:.95;font-weight:900;letter-spacing:-1.5px;margin-top:6px;text-shadow:0 3px 0 #8f1d17}
@@ -52,14 +52,15 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .pheme{background:#fde6e1}.pnon{background:var(--green-l)}
 .foods{display:grid;grid-template-columns:1fr 1fr;gap:4px 2px}
 .f{display:flex;align-items:center;gap:4px;font-size:9.4px;line-height:1.15}
-.f svg{width:42px;height:36px;flex:none;filter:drop-shadow(0 1px 0 rgba(0,0,0,.15))}
+.f img{width:40px;height:40px;flex:none}
 .f b{display:block;font-size:10.1px}
 .pill{display:inline-block;font-size:8.4px;font-weight:800;padding:0 5px;border-radius:8px;color:#fff;margin-top:1px}
 .hi{background:var(--red)}.md{background:var(--orange)}
+.flow{display:flex;align-items:center;justify-content:space-between;background:#fff4e0;border-radius:10px;padding:5px 6px}.flow div{text-align:center;font-size:8.6px;line-height:1.15;font-weight:700;width:52px}.flow img{width:30px;height:30px;display:block;margin:0 auto 1px}.flow i{font-style:normal;font-size:18px;font-weight:900;color:var(--orange)}
 /* fungsi */
 .fn{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .fn .it{text-align:center;font-size:9.8px;line-height:1.3}
-.fn .ic{width:50px;height:50px;border-radius:50%;margin:0 auto 3px;display:flex;align-items:center;justify-content:center;background:var(--b)}
+.fn .ic{width:52px;height:52px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;background:var(--b);border:3px solid #fff;box-shadow:0 2px 0 rgba(0,0,0,.12)}.fn .ic img{width:36px;height:36px}
 .fn h4{font-size:11.3px;line-height:1.15;margin-bottom:2px;color:#1d4f7c}
 /* malnutrisi */
 .meter{margin:3px 0 8px}
@@ -70,10 +71,10 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .mal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mal h4{font-size:11.5px;font-weight:900;margin-bottom:3px;padding:2px 8px;border-radius:10px;display:inline-block;color:#fff}
 .mal ul{list-style:none}
-.mal li{padding-left:12px;position:relative;margin-bottom:4px;font-size:10.0px;line-height:1.3}
+.mal li{padding-left:12px;position:relative;margin-bottom:2.5px;font-size:10.0px;line-height:1.3}
 .mal li:before{content:"";position:absolute;left:1px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--d)}
 /* vit */
-.vit{display:grid;gap:6px}
+.vit{display:grid;gap:4px}
 .v{display:flex;align-items:center;gap:6px;border-radius:10px;padding:3px 6px 3px 3px;background:var(--purple-l);font-size:9.8px;line-height:1.25}
 .v .b{flex:none;width:32px;height:32px;border-radius:50%;color:#fff;font-weight:900;font-size:12.6px;display:flex;align-items:center;justify-content:center;background:var(--bc)}
 .v b{font-size:10.3px}
@@ -102,28 +103,17 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
   <h1>ZAT BESI <em>(Fe)</em></h1>
   <div class="ribbon">Mineral Kecil, Peran Besar untuk Darah &amp; Energi</div>
   <div class="sub">Karakteristik, sumber, fungsi, malnutrisi, dan interaksinya dengan vitamin</div>
-  <div class="mascot">
-    <svg width="190" height="150" viewBox="0 0 190 150">
-      <!-- periodic tile -->
-      <g transform="translate(95,8) rotate(8 40 40)">
-        <rect width="82" height="82" rx="8" fill="#fff" stroke="#2a2220" stroke-width="4"/>
-        <text x="8" y="19" font-size="14" font-weight="800" fill="#2a2220" font-family="Inter,sans-serif">26</text>
-        <text x="74" y="16" font-size="8" font-weight="800" fill="#2a2220" text-anchor="end" font-family="Inter,sans-serif">55,845</text>
-        <text x="41" y="59" font-size="44" font-weight="900" fill="#c8372d" text-anchor="middle" font-family="Inter,sans-serif">Fe</text>
-        <text x="41" y="74" font-size="9" font-weight="800" fill="#2a2220" text-anchor="middle" font-family="Inter,sans-serif">Iron · Besi</text>
-      </g>
-      <!-- blood cell mascot -->
-      <g transform="translate(8,40)">
-        <ellipse cx="45" cy="52" rx="44" ry="42" fill="#e63a2f" stroke="#7d1510" stroke-width="3.5"/>
-        <ellipse cx="45" cy="52" rx="21" ry="16" fill="#b82219" opacity=".55"/>
-        <ellipse cx="30" cy="26" rx="12" ry="6" fill="#fff" opacity=".35" transform="rotate(-30 30 26)"/>
-        <circle cx="32" cy="46" r="5.5" fill="#fff"/><circle cx="58" cy="46" r="5.5" fill="#fff"/>
-        <circle cx="33.5" cy="47" r="3" fill="#2a2220"/><circle cx="59.5" cy="47" r="3" fill="#2a2220"/>
-        <path d="M33 62 Q45 74 57 62" stroke="#2a2220" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-        <circle cx="22" cy="60" r="5" fill="#ff8f86" opacity=".8"/><circle cx="68" cy="60" r="5" fill="#ff8f86" opacity=".8"/>
-        <!-- arms with weight -->
-        <path d="M3 58 Q-8 40 4 28" stroke="#7d1510" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      </g>
+  <div class="mascot" style="width:250px;height:178px;right:5mm;top:2px">
+    <img src="assets/blood.svg" style="position:absolute;left:0;top:30px;width:96px;height:96px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))">
+    <img src="assets/leafy.svg" style="position:absolute;left:8px;top:112px;width:58px;height:58px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
+    <img src="assets/steak.svg" style="position:absolute;left:72px;top:112px;width:64px;height:64px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
+    <img src="assets/orange.svg" style="position:absolute;left:142px;top:116px;width:54px;height:54px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
+    <svg width="110" height="110" viewBox="0 0 82 82" style="position:absolute;left:106px;top:2px;transform:rotate(8deg);filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))">
+      <rect x="2" y="2" width="78" height="78" rx="8" fill="#fff" stroke="#2a2220" stroke-width="4"/>
+      <text x="9" y="20" font-size="14" font-weight="800" fill="#2a2220" font-family="Inter,sans-serif">26</text>
+      
+      <text x="41" y="58" font-size="42" font-weight="900" fill="#c8372d" text-anchor="middle" font-family="Inter,sans-serif">Fe</text>
+      <text x="41" y="73" font-size="9" font-weight="800" fill="#2a2220" text-anchor="middle" font-family="Inter,sans-serif">Iron · Besi</text>
     </svg>
   </div>
 </div>
@@ -151,30 +141,25 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
       <div><b>18 mg</b><span>Wanita 19–49 th</span></div>
       <div><b>+9 mg</b><span>Ibu hamil (T2–T3)</span></div>
     </div>
-  </div>
+      <div style="font-weight:900;font-size:10.8px;margin:8px 0 3px">Perjalanan besi dalam tubuh</div>
+    <div class="flow">
+      <div><img src="assets/bowl.svg"><span>Makanan</span></div><i>›</i>
+      <div><b style="display:flex;width:30px;height:30px;border-radius:50%;background:#f08a24;color:#fff;align-items:center;justify-content:center;margin:0 auto 1px;font-size:8px">USUS</b><span>Usus halus<br>(diserap)</span></div><i>›</i>
+      <div><img src="assets/blood.svg"><span>Transferin<br>→ sumsum</span></div><i>›</i>
+      <div><img src="assets/muscle.svg"><span>Hb &amp; otot<br>/ feritin</span></div>
+    </div>
+</div>
 
   <div class="card" style="--c:var(--green)">
     <div class="hd"><i>2</i>Sumber Zat Besi</div>
     <div class="src">
       <div class="panel pheme">
         <h5 style="color:var(--red)">Hem · Hewani <small>diserap tinggi</small></h5>
-        <div class="foods" style="grid-template-columns:1fr">
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M5 20 Q4 6 18 5 Q33 4 36 17 Q37 29 22 30 Q8 31 5 20Z" fill="#7a2a22"/><path d="M12 12 Q20 8 27 12" stroke="#b25446" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M11 20 Q20 17 30 21" stroke="#5c1d18" stroke-width="2" fill="none"/></svg><div><b>Hati ayam/sapi</b><span class="pill hi">Sangat tinggi</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M5 10 Q18 2 33 8 Q40 20 30 28 Q14 33 6 22Z" fill="#cf4d47"/><path d="M12 12 Q19 8 27 12 M10 18 Q19 14 30 19" stroke="#f7c6bf" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="29" cy="22" r="3" fill="#fff" stroke="#e6e0d4"/></svg><div><b>Daging sapi/kambing</b><span class="pill hi">Tinggi</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M20 4 C8 6 4 20 8 28 C16 24 24 24 32 28 C36 20 32 6 20 4Z" fill="#d9d3c7"/><path d="M20 5 V27 M14 8 V26 M26 8 V26 M9 14 Q20 12 31 14" stroke="#9f9787" stroke-width="1.6" fill="none"/></svg><div><b>Kerang &amp; seafood</b><span class="pill hi">Tinggi</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M3 17 Q18 3 31 14 L38 7 V27 L31 20 Q18 31 3 17Z" fill="#5f90b8"/><circle cx="10" cy="15" r="1.7" fill="#fff"/><path d="M16 12 Q18 17 16 22" stroke="#3b6a8f" stroke-width="1.6" fill="none"/></svg><div><b>Ikan (tuna, sarden)</b><span class="pill md">Sedang</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><ellipse cx="20" cy="18" rx="12" ry="14" fill="#fffaf0" stroke="#d9c9a0" stroke-width="1.5"/><ellipse cx="20" cy="21" rx="6.2" ry="7" fill="#f4b223"/><ellipse cx="18" cy="19" rx="2" ry="2.5" fill="#fbd96e"/></svg><div><b>Telur (kuning)</b><span class="pill md">Sedang</span></div></div>
-        </div>
+        <div class="foods" style="grid-template-columns:1fr"><div class="f"><img src="assets/poultry.svg" ><div><b>Hati &amp; jeroan ayam/sapi</b><span class="pill hi">Sangat tinggi</span></div></div><div class="f"><img src="assets/steak.svg" ><div><b>Daging sapi/kambing</b><span class="pill hi">Tinggi</span></div></div><div class="f"><img src="assets/oyster.svg" ><div><b>Kerang &amp; seafood</b><span class="pill hi">Tinggi</span></div></div><div class="f"><img src="assets/fish.svg" ><div><b>Ikan (tuna, sarden)</b><span class="pill md">Sedang</span></div></div><div class="f"><img src="assets/egg.svg" ><div><b>Telur (kuning)</b><span class="pill md">Sedang</span></div></div></div>
       </div>
       <div class="panel pnon">
         <h5 style="color:var(--green)">Non-Hem · Nabati <small>+ vit. C</small></h5>
-        <div class="foods" style="grid-template-columns:1fr">
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M20 31 C2 26 3 7 20 3 C37 7 38 26 20 31Z" fill="#2f8a3a"/><path d="M20 31 V8 M20 20 L12 14 M20 24 L28 17" stroke="#9fd694" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><div><b>Bayam, kangkung, brokoli</b><span class="pill md">Sedang</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><ellipse cx="12" cy="12" rx="9" ry="5.5" fill="#8c2f27" transform="rotate(-25 12 12)"/><ellipse cx="28" cy="13" rx="9" ry="5.5" fill="#a8432f" transform="rotate(20 28 13)"/><ellipse cx="19" cy="24" rx="9" ry="5.5" fill="#6f241e"/></svg><div><b>Kacang merah &amp; hijau</b><span class="pill hi">Tinggi</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><rect x="4" y="9" width="32" height="18" rx="4" fill="#e6c987"/><g fill="#b98f3d"><circle cx="11" cy="15" r="1.7"/><circle cx="20" cy="19" r="1.7"/><circle cx="29" cy="14" r="1.7"/><circle cx="14" cy="22" r="1.7"/><circle cx="27" cy="22" r="1.7"/></g></svg><div><b>Tempe &amp; tahu</b><span class="pill hi">Tinggi</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><path d="M5 17 H35 Q33 31 20 31 Q7 31 5 17Z" fill="#d78f5b"/><ellipse cx="20" cy="17" rx="15" ry="4" fill="#f3dcae"/><g fill="#c99a4b"><circle cx="14" cy="16" r="2"/><circle cx="21" cy="14" r="2"/><circle cx="27" cy="16" r="2"/></g></svg><div><b>Sereal &amp; oat fortifikasi</b><span class="pill md">Sedang</span></div></div>
-          <div class="f"><svg viewBox="0 0 40 34"><ellipse cx="20" cy="18" rx="9" ry="13" fill="#6c3a24" transform="rotate(25 20 18)"/><path d="M16 9 Q20 18 25 26" stroke="#8d5c42" stroke-width="2" fill="none"/></svg><div><b>Kurma &amp; kismis</b><span class="pill md">Sedang</span></div></div>
-        </div>
+        <div class="foods" style="grid-template-columns:1fr"><div class="f"><img src="assets/leafy.svg" ><div><b>Bayam &amp; kangkung</b><span class="pill md">Sedang</span></div></div><div class="f"><img src="assets/broccoli.svg" ><div><b>Brokoli &amp; sawi hijau</b><span class="pill md">Sedang</span></div></div><div class="f"><img src="assets/peanut.svg" ><div><b>Kacang-kacangan &amp; tempe</b><span class="pill hi">Tinggi</span></div></div><div class="f"><img src="assets/bowl.svg" ><div><b>Sereal &amp; oat fortifikasi</b><span class="pill md">Sedang</span></div></div><div class="f"><img src="assets/orange.svg" ><div><b>Jeruk (sumber vit. C)</b><span class="pill md">Pendamping</span></div></div></div>
       </div>
     </div>
   </div>
@@ -184,11 +169,11 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 <div class="card" style="--c:var(--blue);background:var(--blue-l);padding-top:19px">
   <div class="hd"><i>3</i>Fungsi Zat Besi</div>
   <div class="fn">
-    <div class="it"><div class="ic" style="--b:#e63a2f"><svg width="28" height="24" viewBox="0 0 28 24"><ellipse cx="14" cy="12" rx="12" ry="10" fill="#fff"/><ellipse cx="14" cy="12" rx="5" ry="3.5" fill="#e63a2f"/></svg></div><h4>Pembentuk Hemoglobin</h4>Bahan utama hemoglobin pada sel darah merah di sumsum tulang</div>
-    <div class="it"><div class="ic" style="--b:#2f7fc1"><svg width="30" height="26" viewBox="0 0 30 26"><text x="15" y="19" font-size="17" font-weight="900" fill="#fff" text-anchor="middle" font-family="Inter,sans-serif">O₂</text></svg></div><h4>Transpor Oksigen</h4>Hemoglobin membawa O₂ ke seluruh tubuh; mioglobin menyimpannya di otot</div>
-    <div class="it"><div class="ic" style="--b:#f08a24"><svg width="26" height="28" viewBox="0 0 26 28"><path d="M15 1 L4 16 H12 L10 27 L23 11 H15Z" fill="#fff"/></svg></div><h4>Produksi Energi</h4>Komponen enzim &amp; sitokrom pada rantai transpor elektron</div>
-    <div class="it"><div class="ic" style="--b:#3f9142"><svg width="26" height="28" viewBox="0 0 26 28"><path d="M13 2 L23 6 V14 C23 21 18 25 13 27 C8 25 3 21 3 14 V6Z" fill="#fff"/><path d="M8 14 L12 18 L19 9" stroke="#3f9142" stroke-width="3" fill="none"/></svg></div><h4>Daya Tahan Tubuh</h4>Mendukung fungsi &amp; pematangan sel imun</div>
-    <div class="it"><div class="ic" style="--b:#e0709b"><svg width="30" height="26" viewBox="0 0 30 26"><path d="M15 3 C7 3 4 9 6 14 C4 18 8 22 12 21 C13 24 17 24 18 21 C22 22 26 18 24 14 C26 9 23 3 15 3Z" fill="#fff"/><path d="M15 5 V21" stroke="#e0709b" stroke-width="1.6"/></svg></div><h4>Otak &amp; Tumbuh Kembang</h4>Mendukung kognitif, konsentrasi, dan sintesis DNA</div>
+    <div class="it"><div class="ic" style="--b:#fde3df"><img src="assets/blood.svg" ></div><h4>Pembentuk Hemoglobin</h4>Bahan utama hemoglobin pada sel darah merah di sumsum tulang</div>
+    <div class="it"><div class="ic" style="--b:#dfeefa"><img src="assets/lungs.svg" ></div><h4>Transpor Oksigen</h4>Hemoglobin membawa O₂ ke seluruh tubuh; mioglobin menyimpannya di otot</div>
+    <div class="it"><div class="ic" style="--b:#fff0d2"><img src="assets/zap.svg" ></div><h4>Produksi Energi</h4>Komponen enzim &amp; sitokrom pada rantai transpor elektron</div>
+    <div class="it"><div class="ic" style="--b:#e1f3da"><img src="assets/shield.svg" ></div><h4>Daya Tahan Tubuh</h4>Mendukung fungsi &amp; pematangan sel imun</div>
+    <div class="it"><div class="ic" style="--b:#fbe3ec"><img src="assets/brain.svg" ></div><h4>Otak &amp; Tumbuh Kembang</h4>Mendukung kognitif, konsentrasi, dan sintesis DNA</div>
   </div>
 </div>
 
@@ -202,7 +187,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
     </div>
     <div class="mal">
       <div style="--d:var(--red)">
-        <h4 style="background:var(--red)">Kekurangan</h4>
+        <h4 style="background:var(--red)">Kekurangan</h4><img src="assets/weary.svg" style="width:28px;height:28px;vertical-align:middle;margin-left:4px"><img src="assets/face_pale.svg" style="width:28px;height:28px;vertical-align:middle">
         <ul>
           <li><b>Anemia defisiensi besi</b> (sel darah merah kecil &amp; pucat)</li>
           <li>Lelah, lemah, pucat, pusing, sulit konsentrasi, kuku sendok</li>
@@ -212,7 +197,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
         </ul>
       </div>
       <div style="--d:var(--red-d)">
-        <h4 style="background:var(--red-d)">Kelebihan</h4>
+        <h4 style="background:var(--red-d)">Kelebihan</h4><img src="assets/pill.svg" style="width:28px;height:28px;vertical-align:middle;margin-left:4px"><img src="assets/warning.svg" style="width:28px;height:28px;vertical-align:middle">
         <ul>
           <li>Dari suplemen berlebih atau <b>hemokromatosis</b> (genetik)</li>
           <li>Mual, muntah, nyeri perut, sembelit</li>
@@ -241,7 +226,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 <!-- BOTTOM -->
 <div class="btm">
   <div class="know">
-    <svg width="38" height="46" viewBox="0 0 44 52"><path d="M22 3 C11 3 6 12 10 20 C13 25 14 27 14 32 H30 C30 27 31 25 34 20 C38 12 33 3 22 3Z" fill="#fff" stroke="#8f1d17" stroke-width="2.5"/><rect x="15" y="36" width="14" height="4" rx="2" fill="#8f1d17"/><rect x="17" y="43" width="10" height="4" rx="2" fill="#8f1d17"/></svg>
+    <img src="assets/bulb.svg" style="position:absolute;left:8px;top:10px;width:40px;height:40px">
     <h3>TAHUKAH KAMU?</h3>
     Teh &amp; kopi (tanin), kalsium dosis tinggi, dan fitat pada biji-bijian <b>menghambat</b> serapan besi. Remaja putri dianjurkan minum <b>tablet tambah darah (TTD)</b> 1 tablet/minggu.
   </div>
