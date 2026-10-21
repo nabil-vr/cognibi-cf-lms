@@ -26,6 +26,9 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .hero .sub{font-size:11.4px;margin-top:6px;opacity:.95;max-width:110mm}
 .hero .mascot{position:absolute;right:8mm;top:8px}
 .hero .blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.1)}
+.chip{width:58px;height:58px;border-radius:50%;background:#fff;border:3px solid #ffd24a;box-shadow:0 3px 0 rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center}.chip img{width:38px;height:38px}
+.corner{position:absolute;right:0;top:0;width:70px;height:70px;background:var(--yellow);border-bottom-left-radius:100%;opacity:.95}
+.dots{position:absolute;left:46%;top:14px;width:54px;height:54px;background-image:radial-gradient(rgba(255,255,255,.55) 2.2px,transparent 2.4px);background-size:11px 11px}
 /* cards */
 .card{background:#fff;border-radius:14px;border:2.5px solid var(--c,#ccc);position:relative;padding:24px 12px 11px}
 .card > .hd{position:absolute;top:-11px;left:12px;display:flex;align-items:center;gap:6px;background:var(--c);color:#fff;font-weight:900;font-size:13.8px;letter-spacing:.4px;padding:3px 14px 3px 4px;border-radius:20px;text-transform:uppercase}
@@ -97,21 +100,22 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 
 <!-- HERO -->
 <div class="hero">
-  <div class="blob" style="width:150px;height:150px;right:-30px;top:-50px"></div>
+  <div class="corner"></div><div class="dots"></div><div class="blob" style="width:150px;height:150px;right:-30px;top:-50px"></div>
   <div class="blob" style="width:80px;height:80px;left:330px;bottom:-30px"></div>
   <span class="tag">ILMU GIZI · KELOMPOK 9 · EDISI 2026</span>
   <h1>ZAT BESI <em>(Fe)</em></h1>
   <div class="ribbon">Mineral Kecil, Peran Besar untuk Darah &amp; Energi</div>
   <div class="sub">Karakteristik, sumber, fungsi, malnutrisi, dan interaksinya dengan vitamin</div>
-  <div class="mascot" style="width:250px;height:178px;right:5mm;top:2px">
-    <img src="assets/blood.svg" style="position:absolute;left:0;top:30px;width:96px;height:96px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))">
-    <img src="assets/leafy.svg" style="position:absolute;left:8px;top:112px;width:58px;height:58px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
-    <img src="assets/steak.svg" style="position:absolute;left:72px;top:112px;width:64px;height:64px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
-    <img src="assets/orange.svg" style="position:absolute;left:142px;top:116px;width:54px;height:54px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))">
-    <svg width="110" height="110" viewBox="0 0 82 82" style="position:absolute;left:106px;top:2px;transform:rotate(8deg);filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))">
-      <rect x="2" y="2" width="78" height="78" rx="8" fill="#fff" stroke="#2a2220" stroke-width="4"/>
-      <text x="9" y="20" font-size="14" font-weight="800" fill="#2a2220" font-family="Inter,sans-serif">26</text>
-      
+  <div class="mascot" style="right:8mm;top:16px;display:flex;align-items:center;gap:14px">
+    <div style="display:grid;grid-template-columns:repeat(2,58px);gap:8px">
+      <div class="chip"><img src="assets/blood.svg"></div>
+      <div class="chip"><img src="assets/steak.svg"></div>
+      <div class="chip"><img src="assets/leafy.svg"></div>
+      <div class="chip"><img src="assets/orange.svg"></div>
+    </div>
+    <svg width="116" height="116" viewBox="0 0 82 82" style="filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))">
+      <rect x="2" y="2" width="78" height="78" rx="9" fill="#fff" stroke="#2a2220" stroke-width="4"/>
+      <text x="10" y="21" font-size="14" font-weight="800" fill="#2a2220" font-family="Inter,sans-serif">26</text>
       <text x="41" y="58" font-size="42" font-weight="900" fill="#c8372d" text-anchor="middle" font-family="Inter,sans-serif">Fe</text>
       <text x="41" y="73" font-size="9" font-weight="800" fill="#2a2220" text-anchor="middle" font-family="Inter,sans-serif">Iron · Besi</text>
     </svg>
