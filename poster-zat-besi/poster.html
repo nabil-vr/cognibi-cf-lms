@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Poster Infografis Zat Besi (Fe) - Kelompok 9</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root{
+    --bg:#f1efea; --ink:#2b2b2b; --sage:#cfdcb6; --sage-d:#6f8f3d;
+    --rust:#b3452c; --rust-l:#f3d9d0; --line:#3a3a3a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#888}
+  body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:9.3px;line-height:1.45}
+  .page{width:210mm;height:297mm;background:var(--bg);padding:7mm 9mm 6mm;position:relative;overflow:hidden;margin:0 auto}
+  .top{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.5px;font-weight:300}
+  .rule{border-top:2.5px solid var(--line);border-bottom:1px solid var(--line);height:5px;margin:5px 0}
+  .head{display:flex;justify-content:space-between;align-items:center;padding:4px 0 6px}
+  .head h1{font-size:42px;line-height:.95;font-weight:900;letter-spacing:-1px}
+  .head h1 span{display:block;font-size:22px;font-weight:800;letter-spacing:0;margin-top:5px}
+  .head p{font-style:italic;font-size:10.5px;margin-top:6px;max-width:105mm;color:#444}
+  .fe-tile{width:30mm;height:30mm;border:3px solid var(--line);border-radius:4px;text-align:center;padding-top:3px;background:#fff;position:relative}
+  .fe-tile .z{position:absolute;left:6px;top:4px;font-size:13px;font-weight:700}
+  .fe-tile .s{font-size:52px;font-weight:900;line-height:1.05;margin-top:8px}
+  .fe-tile .n{font-size:8px;font-weight:700;line-height:1.1}
+  .fe-tile .m{position:absolute;right:6px;top:5px;font-size:9px;font-weight:700}
+  .fe-cap{text-align:center;font-weight:700;font-size:10px;margin-top:3px}
+  .sec-h{background:var(--sage);padding:6px 10px;font-weight:800;font-size:12.5px;display:flex;align-items:center;gap:8px;text-transform:uppercase}
+  .num{width:20px;height:20px;border:2px solid var(--line);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex:none}
+  .row{display:flex;gap:10px;margin-top:8px}
+  .col{flex:1;min-width:0}
+  .box{padding:6px 4px 0}
+  .item{display:flex;gap:6px;margin-bottom:5px}
+  .star{color:var(--sage-d);font-weight:900;flex:none;font-size:11px;line-height:1.2}
+  .item b{font-size:10px}
+  .hl{color:var(--sage-d);font-weight:800}
+  .rust{color:var(--rust);font-weight:800}
+  .foods{display:grid;grid-template-columns:repeat(3,1fr);gap:5px 4px;margin-top:6px}
+  .food{text-align:center;font-size:8.4px;line-height:1.25}
+  .food b{display:block;font-size:8.6px}
+  .food svg{width:40px;height:34px;display:block;margin:0 auto 1px}
+  .tag{display:inline-block;font-size:7.5px;font-weight:700;padding:1px 6px;border-radius:8px;color:#fff;margin:2px 3px 0 0}
+  .heme{background:var(--rust)} .nonheme{background:var(--sage-d)}
+  .fn{display:grid;grid-template-columns:repeat(5,1fr);margin-top:6px}
+  .fn > div{padding:2px 8px;border-left:1.5px solid #999;font-size:8.8px}
+  .fn > div:first-child{border-left:none}
+  .fn h4{font-size:9.2px;line-height:1.2;margin-bottom:3px;text-align:center}
+  .fn ul{padding-left:11px} .fn li{margin-bottom:2px}
+  .ico{text-align:center;margin-bottom:2px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:6px}
+  .two > div{padding:0 9px}
+  .two > div + div{border-left:1.5px solid #999}
+  .two h4{text-align:center;font-size:10px;margin-bottom:4px}
+  .two ul{list-style:none}
+  .two li{display:flex;gap:5px;margin-bottom:4px;font-size:9px}
+  .vit{display:grid;grid-template-columns:1fr;gap:4px;margin-top:6px}
+  .v{display:flex;gap:6px;align-items:flex-start;font-size:8.8px;line-height:1.32}
+  .badge{flex:none;min-width:30px;height:24px;border-radius:5px;color:#fff;font-weight:900;font-size:10.5px;display:flex;align-items:center;justify-content:center;padding:0 3px}
+  .up{background:#4e8a3a} .down{background:var(--rust)} .mix{background:#c58a17}
+  .v b{font-size:8.6px}
+  .legend{font-size:7.4px;margin-top:4px;color:#555}
+  .tahu{display:flex;align-items:center;gap:10px;margin-top:6px;border-top:1.5px solid #999;padding-top:5px}
+  .tahu h3{font-size:25px;font-weight:900;line-height:1.05;flex:none}
+  .tbox{font-size:9px;flex:1;padding:6px 9px}
+  .tbox.a{background:transparent}
+  .tbox.b{background:var(--sage)}
+  .foot{position:absolute;left:9mm;right:9mm;bottom:5mm;border-top:2.5px solid var(--line);padding-top:4px;display:flex;justify-content:space-between;font-size:9.5px}
+  .tips{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top"><div>ILMU GIZI / KELOMPOK 9</div><div>EDISI 2026</div></div>
+  <div class="rule"></div>
+
+  <div class="head">
+    <div>
+      <h1>ZAT BESI (Fe):<span>Kecil Jumlahnya, Besar Perannya</span></h1>
+      <p>Mengenal karakteristik, sumber, fungsi, malnutrisi, dan interaksinya dengan vitamin</p>
+    </div>
+    <div>
+      <div class="fe-tile"><div class="z">26</div><div class="m">Fe</div><div class="s">Fe</div><div class="n">Iron<br>55.845</div></div>
+      <div class="fe-cap">Besi (Ferrum)</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- 1 & 2 -->
+  <div class="row" style="margin-top:7px">
+    <div class="col" style="flex:.92">
+      <div class="sec-h"><span class="num">1</span>KARAKTERISTIK</div>
+      <div class="box">
+        <div class="item"><span class="star">✱</span><div><b>Nama Lain</b><br>Besi, Ferrum, Iron (simbol Fe, nomor atom 26)</div></div>
+        <div class="item"><span class="star">✱</span><div><b>Golongan</b><br>Mineral mikro (<i>trace mineral</i>) esensial: dibutuhkan sedikit, tetapi tidak boleh kurang. Tubuh dewasa mengandung ± 3–4 gram, sekitar <span class="hl">65% ada di hemoglobin</span>.</div></div>
+        <div class="item"><span class="star">✱</span><div><b>Dua Bentuk Zat Besi</b><br>
+          <span class="tag heme">HEM</span> dari hewani, diserap ± 15–35%<br>
+          <span class="tag nonheme">NON-HEM</span> dari nabati, diserap ± 2–20%</div></div>
+        <div class="item"><span class="star">✱</span><div><b>Transpor &amp; Simpanan</b><br>Diangkut oleh <span class="hl">transferin</span>, disimpan sebagai <span class="hl">feritin</span> dan hemosiderin (hati, limpa, sumsum tulang).</div></div>
+        <div class="item"><span class="star">✱</span><div><b>Kebutuhan (AKG 2019)</b><br>Laki-laki dewasa 9 mg/hari · Perempuan 19–49 th <span class="rust">18 mg/hari</span> · Remaja putri 15 mg · Ibu hamil tambahan +9 mg (trimester 2 &amp; 3).</div></div>
+      </div>
+    </div>
+
+    <div class="col" style="flex:1.08">
+      <div class="sec-h"><span class="num">2</span>SUMBER ZAT BESI</div>
+      <div class="box">
+        <div style="font-weight:800;font-size:10px;margin-bottom:2px">Terdapat pada bahan pangan hewani dan nabati</div>
+        <div style="font-size:8px;color:var(--rust);font-weight:700">Sumber hem (hewani): penyerapan tinggi</div>
+        <div class="foods">
+          <div class="food"><svg viewBox="0 0 40 34"><ellipse cx="20" cy="18" rx="17" ry="12" fill="#7a2a22"/><ellipse cx="16" cy="15" rx="7" ry="4" fill="#9c3d33"/></svg><b>Hati</b>(ayam, sapi)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><path d="M6 8 Q22 2 34 10 Q38 22 28 28 Q10 32 5 20Z" fill="#c24a45"/><path d="M12 12 Q20 8 28 13" stroke="#f1c5bf" stroke-width="2.5" fill="none"/><path d="M11 20 Q20 16 29 21" stroke="#f1c5bf" stroke-width="2.5" fill="none"/></svg><b>Daging merah</b>(sapi, kambing)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><path d="M3 17 Q18 4 32 15 L38 8 L38 26 L32 19 Q18 30 3 17Z" fill="#6f95b3"/><circle cx="10" cy="15" r="1.5" fill="#fff"/></svg><b>Ikan &amp; Kerang</b>(tuna, sarden)</div>
+        </div>
+        <div style="font-size:8px;color:var(--sage-d);font-weight:700;margin-top:6px">Sumber non-hem (nabati &amp; lainnya)</div>
+        <div class="foods">
+          <div class="food"><svg viewBox="0 0 40 34"><path d="M20 30 C4 24 4 6 20 3 C36 6 36 24 20 30Z" fill="#3f8a3a"/><path d="M20 30 L20 8" stroke="#a9d79c" stroke-width="2"/></svg><b>Sayuran hijau</b>(bayam, kangkung)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><ellipse cx="13" cy="12" rx="8" ry="5" fill="#8c3a2e" transform="rotate(-20 13 12)"/><ellipse cx="27" cy="14" rx="8" ry="5" fill="#a64a37" transform="rotate(15 27 14)"/><ellipse cx="19" cy="24" rx="8" ry="5" fill="#7b3228"/></svg><b>Kacang-kacangan</b>(kacang merah, kedelai)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><rect x="5" y="9" width="30" height="17" rx="3" fill="#e1c379"/><g fill="#b8923f"><circle cx="12" cy="15" r="1.6"/><circle cx="20" cy="18" r="1.6"/><circle cx="28" cy="14" r="1.6"/><circle cx="16" cy="22" r="1.6"/><circle cx="26" cy="22" r="1.6"/></g></svg><b>Tempe &amp; Tahu</b>(olahan kedelai)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><ellipse cx="20" cy="19" rx="11" ry="13" fill="#fbf4e1" stroke="#d9c9a0"/><ellipse cx="20" cy="21" rx="5.5" ry="6.5" fill="#f1b72f"/></svg><b>Telur</b>(kuning telur)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><g fill="#c99a4b"><ellipse cx="10" cy="12" rx="3" ry="6"/><ellipse cx="17" cy="10" rx="3" ry="6"/><ellipse cx="24" cy="10" rx="3" ry="6"/><ellipse cx="31" cy="12" rx="3" ry="6"/></g><rect x="9" y="16" width="24" height="10" rx="3" fill="#a9773a"/></svg><b>Serealia utuh</b>(oat, sereal fortifikasi)</div>
+          <div class="food"><svg viewBox="0 0 40 34"><ellipse cx="20" cy="18" rx="11" ry="11" fill="#6d2a47"/><ellipse cx="20" cy="18" rx="11" ry="11" fill="none" stroke="#a24a72" stroke-width="2"/><circle cx="16" cy="14" r="3" fill="#8f4a68"/></svg><b>Buah kering</b>(kurma, kismis)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="sec-h" style="margin-top:10px"><span class="num">3</span>FUNGSI ZAT BESI</div>
+  <div class="fn">
+    <div><div class="ico"><svg width="30" height="26" viewBox="0 0 30 26"><circle cx="15" cy="13" r="10" fill="#c6362c"/><ellipse cx="15" cy="13" rx="4" ry="2.5" fill="#8d1f18"/></svg></div>
+      <h4>Pembentuk Hemoglobin</h4><ul><li>Bahan utama hemoglobin di sel darah merah</li><li>Membentuk sel darah merah di sumsum tulang</li></ul></div>
+    <div><div class="ico"><svg width="30" height="26" viewBox="0 0 30 26"><circle cx="9" cy="13" r="4.5" fill="#6aa6d6"/><circle cx="21" cy="8" r="3.2" fill="#6aa6d6"/><circle cx="21" cy="18" r="3.2" fill="#6aa6d6"/><path d="M13 12 L18 9 M13 14 L18 17" stroke="#6aa6d6" stroke-width="2"/></svg></div>
+      <h4>Transpor Oksigen</h4><ul><li>Hemoglobin membawa O₂ ke seluruh tubuh</li><li>Mioglobin menyimpan O₂ di otot</li></ul></div>
+    <div><div class="ico"><svg width="30" height="26" viewBox="0 0 30 26"><path d="M17 2 L7 15 H14 L12 24 L23 10 H16Z" fill="#e9a31a"/></svg></div>
+      <h4>Metabolisme Energi</h4><ul><li>Komponen enzim &amp; sitokrom pada rantai transpor elektron</li><li>Membantu mengubah makanan jadi energi</li></ul></div>
+    <div><div class="ico"><svg width="30" height="26" viewBox="0 0 30 26"><path d="M15 2 L26 6 V13 C26 19 21 23 15 25 C9 23 4 19 4 13 V6Z" fill="#4e8a3a"/><path d="M9 13 L14 18 L21 8" stroke="#fff" stroke-width="2.5" fill="none"/></svg></div>
+      <h4>Daya Tahan Tubuh</h4><ul><li>Mendukung fungsi &amp; pematangan sel imun</li><li>Mengurangi risiko infeksi</li></ul></div>
+    <div><div class="ico"><svg width="30" height="26" viewBox="0 0 30 26"><path d="M15 3 C7 3 4 9 6 14 C4 18 8 22 12 21 C13 24 17 24 18 21 C22 22 26 18 24 14 C26 9 23 3 15 3Z" fill="#e8a0b0"/><path d="M15 5 V21" stroke="#c4607a" stroke-width="1.5"/></svg></div>
+      <h4>Otak &amp; Tumbuh Kembang</h4><ul><li>Perkembangan kognitif &amp; konsentrasi</li><li>Sintesis DNA &amp; pertumbuhan anak</li></ul></div>
+  </div>
+
+  <!-- 4 & 5 -->
+  <div class="row" style="margin-top:9px;gap:0">
+    <div style="flex:1;padding-right:10px">
+      <div class="sec-h"><span class="num">4</span>MALNUTRISI: KURANG ATAU LEBIH</div>
+      <div class="two">
+        <div>
+          <h4 class="rust">Kekurangan Zat Besi</h4>
+          <ul>
+            <li><span class="star">✱</span><span><b>Anemia defisiensi besi</b>: sel darah merah kecil &amp; pucat (mikrositik hipokrom)</span></li>
+            <li><span class="star">✱</span><span>Gejala: lelah, lemah, lesu, pucat, pusing, sulit konsentrasi, kuku seperti sendok</span></li>
+            <li><span class="star">✱</span><span>Imunitas turun &amp; mudah infeksi</span></li>
+            <li><span class="star">✱</span><span>Pada kehamilan: risiko BBLR, lahir prematur, &amp; gangguan tumbuh kembang anak</span></li>
+            <li><span class="star">✱</span><span>Rentan: remaja putri, ibu hamil, balita</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="rust">Kelebihan Zat Besi</h4>
+          <ul>
+            <li><span class="star">✱</span><span>Biasanya dari suplemen berlebih atau kelainan genetik <b>hemokromatosis</b></span></li>
+            <li><span class="star">✱</span><span>Gejala: mual, muntah, sakit perut, sembelit</span></li>
+            <li><span class="star">✱</span><span>Penumpukan besi merusak hati, jantung, dan pankreas</span></li>
+            <li><span class="star">✱</span><span>Batas aman (UL) ± 45 mg/hari untuk dewasa</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:.95;border-left:1.5px solid #999;padding-left:10px">
+      <div class="sec-h"><span class="num">5</span>INTERAKSI DENGAN VITAMIN</div>
+      <div class="vit">
+        <div class="v"><div class="badge up">C ▲</div><div><b>Vitamin C</b> mengubah Fe³⁺ menjadi Fe²⁺ sehingga <span class="hl">meningkatkan penyerapan</span> besi non-hem.</div></div>
+        <div class="v"><div class="badge mix">A ⇄</div><div><b>Vitamin A</b> membantu mobilisasi simpanan besi. Kekurangan vit. A memperparah anemia.</div></div>
+        <div class="v"><div class="badge up">B6</div><div><b>Vitamin B6</b> dibutuhkan dalam sintesis heme, bagian dari hemoglobin.</div></div>
+        <div class="v"><div class="badge up">B2</div><div><b>Riboflavin (B2)</b> membantu penyerapan &amp; pemanfaatan besi. Kurang B2 menurunkan kadar Hb.</div></div>
+        <div class="v"><div class="badge up">B9·B12</div><div><b>Folat &amp; B12</b> bekerja sama membentuk sel darah merah. Kekurangannya menyebabkan <i>anemia megaloblastik</i>.</div></div>
+        <div class="v"><div class="badge down">E ▼</div><div><b>Vitamin E</b>: suplemen besi dosis tinggi memicu stres oksidatif dan dapat menurunkan status vit. E.</div></div>
+        <div class="legend">▲ meningkatkan · ⇄ saling terkait · ▼ dapat menurun</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tahukah kamu -->
+  <div class="tahu">
+    <svg width="44" height="52" viewBox="0 0 44 52"><path d="M22 4 C11 4 6 13 10 21 C13 26 14 28 14 33 H30 C30 28 31 26 34 21 C38 13 33 4 22 4Z" fill="#ffe08a" stroke="#333" stroke-width="2"/><rect x="15" y="36" width="14" height="4" rx="2" fill="#333"/><rect x="17" y="43" width="10" height="4" rx="2" fill="#333"/></svg>
+    <h3>TAHUKAH<br>KAMU?</h3>
+    <div class="tbox a">Teh &amp; kopi (tanin), kalsium dosis tinggi, dan fitat pada biji-bijian dapat <b>menghambat</b> penyerapan besi. Minum teh/kopi minimal 1–2 jam setelah makan, dan padukan makanan nabati kaya besi dengan <b>buah kaya vitamin C</b>.</div>
+    <div class="tbox b">Tablet tambah darah (TTD) rutin 1 tablet/minggu untuk remaja putri dan 1 tablet/hari untuk ibu hamil. Konsumsi suplemen sesuai anjuran tenaga kesehatan.</div>
+  </div>
+
+  <div class="sec-h" style="margin-top:6px;padding:4px 10px"><span class="num">✓</span>TIPS MAKSIMALKAN PENYERAPAN BESI</div>
+  <div class="fn" style="grid-template-columns:repeat(4,1fr)">
+    <div><h4>Padukan dengan Vitamin C</h4><ul><li>Bayam + jeruk, tempe + sambal tomat</li></ul></div>
+    <div><h4>Hindari Penghambat</h4><ul><li>Teh, kopi, &amp; susu dosis tinggi saat makan</li></ul></div>
+    <div><h4>Variasikan Sumber</h4><ul><li>Kombinasikan lauk hewani &amp; nabati setiap hari</li></ul></div>
+    <div><h4>Masak dengan Tepat</h4><ul><li>Peralatan besi/besi cor dapat menambah kadar besi makanan</li></ul></div>
+  </div>
+  <div class="foot"><div>Sumber : Angka Kecukupan Gizi (AKG) Indonesia, 2019</div><div>Rifni, Balqis, Nabil</div></div>
+</div>
+</body>
+</html>
