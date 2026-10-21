@@ -15,12 +15,12 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .page{width:210mm;height:297mm;margin:0 auto;position:relative;overflow:hidden;
   background:var(--cream);
   background-image:radial-gradient(#f3e3c6 1.2px,transparent 1.3px);background-size:11px 11px;
-  padding:0 8mm 0;display:flex;flex-direction:column;gap:8px}
+  padding:0 8mm 0;display:flex;flex-direction:column;gap:5px}
 /* header */
-.hero{margin:0 -8mm;background:linear-gradient(135deg,#9c1f19 0%,#d4452f 55%,#f08a24 100%);position:relative;padding:12px 8mm 20px;color:#fff;overflow:hidden;height:178px;flex:none}
+.hero{margin:0 -8mm;background:linear-gradient(135deg,#9c1f19 0%,#d4452f 55%,#f08a24 100%);position:relative;padding:12px 8mm 20px;color:#fff;overflow:hidden;height:168px;flex:none}
 .hero:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:16px;background:var(--cream);clip-path:ellipse(60% 100% at 50% 100%)}
 .hero .tag{display:inline-block;background:#fff;color:var(--red-d);font-weight:800;font-size:10.8px;letter-spacing:1px;padding:3px 10px;border-radius:20px}
-.hero h1{font-size:60px;line-height:.95;font-weight:900;letter-spacing:-1.5px;margin-top:6px;text-shadow:0 3px 0 #8f1d17}
+.hero h1{font-size:60px;line-height:.95;font-weight:900;letter-spacing:-1.5px;margin-top:4px;text-shadow:0 3px 0 #8f1d17}
 .hero h1 em{font-style:normal;color:var(--yellow)}
 .ribbon{display:inline-block;margin-top:6px;background:var(--yellow);color:#5a1510;font-weight:800;font-size:15.6px;padding:4px 16px 4px 12px;border-radius:4px;box-shadow:3px 3px 0 #8f1d17}
 .hero .sub{font-size:11.4px;margin-top:6px;opacity:.95;max-width:110mm}
@@ -30,7 +30,8 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .corner{position:absolute;right:0;top:0;width:70px;height:70px;background:var(--yellow);border-bottom-left-radius:100%;opacity:.95}
 .dots{position:absolute;left:46%;top:14px;width:54px;height:54px;background-image:radial-gradient(rgba(255,255,255,.55) 2.2px,transparent 2.4px);background-size:11px 11px}
 /* cards */
-.card{background:#fff;border-radius:14px;border:2.5px solid var(--c,#ccc);position:relative;padding:24px 12px 11px}
+.card,.grid2{margin-top:9px}
+.card{background:#fff;border-radius:14px;border:2.5px solid var(--c,#ccc);position:relative;padding:22px 12px 8px}
 .card > .hd{position:absolute;top:-11px;left:12px;display:flex;align-items:center;gap:6px;background:var(--c);color:#fff;font-weight:900;font-size:13.8px;letter-spacing:.4px;padding:3px 14px 3px 4px;border-radius:20px;text-transform:uppercase}
 .card > .hd i{font-style:normal;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--c);display:flex;align-items:center;justify-content:center;font-size:14.4px}
 .grid2{display:grid;gap:9px}
@@ -63,7 +64,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 /* fungsi */
 .fn{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .fn .it{text-align:center;font-size:9.8px;line-height:1.3}
-.fn .ic{width:52px;height:52px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;background:var(--b);border:3px solid #fff;box-shadow:0 2px 0 rgba(0,0,0,.12)}.fn .ic img{width:36px;height:36px}
+.fn .ic{width:44px;height:44px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;background:var(--b);border:3px solid #fff;box-shadow:0 2px 0 rgba(0,0,0,.12)}.fn .ic img{width:30px;height:30px}
 .fn h4{font-size:11.3px;line-height:1.15;margin-bottom:2px;color:#1d4f7c}
 /* malnutrisi */
 .meter{margin:3px 0 8px}
@@ -77,14 +78,14 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 .mal li{padding-left:12px;position:relative;margin-bottom:2.5px;font-size:10.0px;line-height:1.3}
 .mal li:before{content:"";position:absolute;left:1px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--d)}
 /* vit */
-.vit{display:grid;gap:4px}
+.vit{display:grid;gap:3px}
 .v{display:flex;align-items:center;gap:6px;border-radius:10px;padding:3px 6px 3px 3px;background:var(--purple-l);font-size:9.8px;line-height:1.25}
 .v .b{flex:none;width:32px;height:32px;border-radius:50%;color:#fff;font-weight:900;font-size:12.6px;display:flex;align-items:center;justify-content:center;background:var(--bc)}
 .v b{font-size:10.3px}
 .arr{font-weight:900;margin-left:2px}
 .legend{font-size:8.4px;color:#666;margin-top:1px}
 /* bottom */
-.btm{display:grid;grid-template-columns:1.1fr 1fr;gap:9px}
+.btm{margin-top:4px;display:grid;grid-template-columns:1.1fr 1fr;gap:9px}
 .know{background:var(--yellow);border-radius:14px;padding:8px 10px 8px 52px;position:relative;font-size:10.3px;line-height:1.35;border:2.5px solid #e0a817}
 .know h3{font-size:16.8px;font-weight:900;color:var(--red-d);line-height:1;margin-bottom:3px}
 .know svg{position:absolute;left:8px;top:8px}
@@ -123,7 +124,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 </div>
 
 <!-- ROW 1 -->
-<div class="grid2" style="grid-template-columns:.95fr 1.05fr;margin-top:-6px">
+<div class="grid2" style="grid-template-columns:.95fr 1.05fr;margin-top:2px">
   <div class="card" style="--c:var(--orange)">
     <div class="hd"><i>1</i>Karakteristik</div>
     <div class="stats">
@@ -170,7 +171,7 @@ body{font-family:"Inter","DejaVu Sans",sans-serif;color:var(--ink);font-size:10.
 </div>
 
 <!-- FUNGSI -->
-<div class="card" style="--c:var(--blue);background:var(--blue-l);padding-top:19px">
+<div class="card" style="--c:var(--blue);background:var(--blue-l);padding-top:20px;padding-bottom:6px">
   <div class="hd"><i>3</i>Fungsi Zat Besi</div>
   <div class="fn">
     <div class="it"><div class="ic" style="--b:#fde3df"><img src="assets/blood.svg" ></div><h4>Pembentuk Hemoglobin</h4>Bahan utama hemoglobin pada sel darah merah di sumsum tulang</div>
